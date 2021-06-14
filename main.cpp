@@ -1,7 +1,5 @@
-//  memory management SUB-PROJECT 1
+//  Memory Paging Simulator
 //  Created by Nitin Kumar on 12/18/19.
-//
-//  Due: 12/19/19 CSCI 375
 
 #include <iostream>
 #include <random>
@@ -9,6 +7,40 @@
 #include <unordered_set>
 #include <unordered_map>
 using namespace std;
+
+// Prototypes
+void LRU(int, int, int [10]);
+void FIFO(int, int, int [10]);
+
+int main(){
+    srand(time(NULL));
+    
+    // RANDOMIZE PAGE NUMBER (0-9), RANDOMIZE FRAME NUMBER (1-7)
+    int pageNum = rand()%10;
+    int frameNum = (rand()%7)+ 1;
+    
+    // RANDOMIZE 10 NUMBERS (0-9) FOR PAGE REFERENCE STRING
+    int pageRefString[10] = {};
+    int pageRefStringLength = sizeof(pageRefString) / sizeof(pageRefString[0]);
+    
+    for (int i = 0; i < pageRefStringLength; i++)
+        pageRefString[i] = rand()%10;
+    
+    // PRINTING INTs FROM ABOVE SO THEY ARE SEEN IN THE OUTPUT
+    cout << "Number of Pages:\t" << pageNum << endl
+    << "Number of Frames:\t" << frameNum << endl
+    << "Reference String:\t";
+    for (int i = 0; i < pageRefStringLength; i++)
+        cout << pageRefString[i] << ' ';
+    
+    cout << endl << endl << endl;
+    
+    // CALLING FIFO AND LRU HERE WITH SAME PARAMETERS
+    FIFO(pageNum, frameNum, pageRefString);
+    LRU(pageNum, frameNum, pageRefString);
+    
+    return 0;
+}
 
 void LRU(int numPages, int numFrames, int refString[10]){
     cout << "Least Recently Used (LRU) Paging Algorithm";
@@ -86,34 +118,4 @@ void FIFO(int numPages, int numFrames, int refString[10]){
             cout << '\t' << '\t' << count1[j];
     }
     cout << endl << "FIFO Page Fault count is: " << count << endl << endl << endl;
-}
-
-int main(){
-    srand(time(NULL));
-    
-    // RANDOMIZE PAGE NUMBER (0-9), RANDOMIZE FRAME NUMBER (1-7)
-    int pageNum = rand()%10;
-    int frameNum = (rand()%7)+ 1;
-    
-    // RANDOMIZE 10 NUMBERS (0-9) FOR PAGE REFERENCE STRING
-    int pageRefString[10] = {};
-    int pageRefStringLength = sizeof(pageRefString) / sizeof(pageRefString[0]);
-    
-    for (int i = 0; i < pageRefStringLength; i++)
-        pageRefString[i] = rand()%10;
-    
-    // PRINTING INTs FROM ABOVE SO THEY ARE SEEN IN THE OUTPUT
-    cout << "Number of Pages:\t" << pageNum << endl
-    << "Number of Frames:\t" << frameNum << endl
-    << "Reference String:\t";
-    for (int i = 0; i < pageRefStringLength; i++)
-        cout << pageRefString[i] << ' ';
-    
-    cout << endl << endl << endl;
-    
-    // CALLING FIFO AND LRU HERE WITH SAME PARAMETERS
-    FIFO(pageNum, frameNum, pageRefString);
-    LRU(pageNum, frameNum, pageRefString);
-    
-    return 0;
 }
