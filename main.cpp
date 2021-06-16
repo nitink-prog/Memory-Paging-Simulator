@@ -14,7 +14,7 @@ void FIFO(int, int, int [10]);
 
 int main(){
     srand(time(NULL));
-    
+
     // RANDOMIZE PAGE NUMBER (0-9), RANDOMIZE FRAME NUMBER (1-7)
     int pageNum = rand()%10;
     int frameNum = (rand()%7)+ 1;
@@ -77,7 +77,7 @@ void LRU(int numPages, int numFrames, int refString[10]){
             count++;           //counting Page Fault
             
             for(int j = 0; j < numFrames; j++)
-                cout << '\t' << '\t' << frame[j];
+                cout << '\t' << frame[j];
         }
     }
     
@@ -115,7 +115,7 @@ void FIFO(int numPages, int numFrames, int refString[10]){
         cout << refString[i] << ":";
         
         for(int j = 0; j < numFrames; j++)
-            cout << '\t' << '\t' << count1[j];
+            cout << '\t' << count1[j];
     }
     cout << endl << "FIFO Page Fault count is: " << count << endl << endl << endl;
 }
